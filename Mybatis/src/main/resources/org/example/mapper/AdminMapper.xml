@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.AdminMapper">
+<!--查询数据-->
+    <select id="selectAll" resultType="org.example.pojo.AdminPojo">
+        select * from Admin
+    </select>
+<!--插入数据-->
+    <insert id="add">
+        insert into Admin(AdminID,AdminName,AdminPhone)
+        values(#{AdminID},#{AdminName},#{AdminPhone})
+    </insert>
+<!--删除数据-->
+    <delete id="deleteByID">
+        delete from Admin where AdminID=#{AdminID}
+    </delete>
+<!--更新数据-->
+    <update id="update">
+            UPDATE Admin
+            <set>
+                <if test="AdminName != null and AdminName!=''">AdminName = #{AdminName},</if>
+                <if test="AdminPhone != null and AdminPhone!=''">AdminPhone = #{AdminPhone},</if>
+                <if test="AdminPassword != null and AdminPassword!=''">AdminPassword = #{AdminPassword},</if>
+            </set>
+            WHERE AdminID = #{AdminID}
+    </update>
+<!--查询作业1-->
+    <select id="selectZy" resultType="org.example.pojo.AdminPojo">
+        select * from Admin where AdminID=#{AdminID}
+    </select>
+</mapper>
